@@ -182,12 +182,14 @@ class ParamDef(Symbol):
                 raise Exception("Standard deviation is mandatory for normal / lognormal distribution")
             self.std = kwargs["std"]
 
+            #disable min max warning, not helpful
+            """
             if distrib == DistributionType.LOGNORMAL and self.min is not None:
                 warn(
                     "Warning : LogNormal does not support min/max boundaries for parameter : ",
                     self.name,
                 )
-
+            """
         elif distrib == DistributionType.BETA:
             if "a" not in kwargs or "b" not in kwargs or "std" not in kwargs:
                 raise Exception("Beta distribution requires params 'a' 'b' and 'std' (used as scale)")
@@ -263,7 +265,7 @@ class ParamDef(Symbol):
                         self._distrib = norm(loc=self.default, scale=self.std)
 
                 elif self.distrib == DistributionType.LOGNORMAL:
-                    self._distrib = lognorm(self.default, self.std)
+                    self._distrib = lognorm(scale=self.default, s=self.std)
 
                 elif self.distrib == DistributionType.BETA:
                     self._distrib = beta(self.a, self.b, loc=self.default, scale=self.std)
