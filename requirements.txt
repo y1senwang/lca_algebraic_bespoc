@@ -8,7 +8,7 @@ nbconvert
 numpy
 matplotlib
 scipy
-brightway2
+brightway25
 ipython
 SALib
 tqdm
