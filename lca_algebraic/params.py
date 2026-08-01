@@ -264,7 +264,7 @@ class ParamDef(Symbol):
                         self._distrib = norm(loc=self.default, scale=self.std)
 
                 elif self.distrib == DistributionType.LOGNORMAL:
-                    self._distrib = lognorm(self.default, self.std)
+                    self._distrib = lognorm(scale=self.default, s=self.std)
 
                 elif self.distrib == DistributionType.BETA:
                     self._distrib = beta(self.a, self.b, loc=self.default, scale=self.std)
