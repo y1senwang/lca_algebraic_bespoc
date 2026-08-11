@@ -617,7 +617,8 @@ def _incer_stochastic_data(methods, param_names, Y, sob1, sobt):
     )
 
     df = pd.DataFrame(data, index=rows, columns=[method_name(method) for method in methods])
-    displayWithExportButton(df)
+    #displayWithExportButton(df)
+    return df
 
 
 @with_db_context(arg="model")
